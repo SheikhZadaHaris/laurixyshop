@@ -1,0 +1,11 @@
+/* LAURIXY - Auth Pages */
+.auth-page{min-height:100vh;display:flex;flex-direction:column}
+.auth-container{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;position:relative;overflow:hidden}
+.auth-container::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+.auth-card{background:linear-gradient(135deg,rgba(26,31,58,.95) 0%,rgba(26,31,58,.85) 100%);padding:3.5rem;border-radius:var(--radius-xl);border:1px solid var(--border);width:100%;max-width:420px;z-index:2;box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(0,212,255,.1);backdrop-filter:blur(10px)}
+.auth-header{text-align:center;margin-bottom:2.5rem}
+.auth-header h1{font-size:2.2rem;margin-bottom:.75rem;color:var(--primary);font-weight:900}
+.auth-header p{color:var(--text2);font-size:.95rem}
+.auth-footer{text-align:center;color:var(--text2);font-size:.95rem}
+.auth-link{color:var(--primary);text-decoration:none;font-weight:700;transition:var(--transition)}
+.auth-link:hover{color:var(--secondary);text-shadow:0 0 8px rgba(255,0,110,.3)}

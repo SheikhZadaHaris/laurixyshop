@@ -1,0 +1,24 @@
+/* LAURIXY - Forms & Inputs */
+.form-group{display:flex;flex-direction:column;margin-bottom:1.5rem}
+.form-group label{color:var(--text2);margin-bottom:.75rem;font-weight:700;font-size:.95rem;letter-spacing:.3px}
+.form-group input,.form-group textarea,.form-group select{padding:.9rem 1.2rem;background:rgba(5,8,18,.6);border:1.5px solid var(--border);border-radius:var(--radius-lg);color:var(--text);font-size:1rem;transition:var(--transition);font-family:inherit}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:0;border-color:var(--primary);background:rgba(5,8,18,.8);box-shadow:inset 0 0 0 1px var(--primary),0 0 15px rgba(0,212,255,.2)}
+.error-text{color:var(--error);font-size:.85rem;margin-top:.35rem;font-weight:600}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group textarea{resize:vertical}
+.auth-form{display:flex;flex-direction:column;gap:1.5rem}
+.auth-divider{text-align:center;color:var(--text3);position:relative;margin:1.5rem 0;font-size:.9rem}
+.auth-divider::before,.auth-divider::after{content:'';position:absolute;top:50%;width:45%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.auth-divider::before{left:0}
+.auth-divider::after{right:0}
+.payment-methods{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.payment-option{display:flex;align-items:center;gap:.75rem;cursor:pointer;padding:1.2rem;background:var(--darker);border:1.5px solid var(--border);border-radius:var(--radius-md);transition:var(--transition)}
+.payment-option:hover{border-color:var(--primary);box-shadow:var(--glow-sm)}
+.payment-option input[type=radio]{cursor:pointer}
+.payment-option input[type=radio]:checked+.payment-label{color:var(--primary)}
+.payment-label{cursor:pointer;font-weight:700}
+.payment-details-box{background:var(--darker);padding:1.75rem;border-radius:var(--radius-md);border:1px solid var(--border);color:var(--text2);font-weight:600}
+.payment-details-box p{margin-bottom:.75rem}
+.search-input,.category-select{padding:.9rem 1.2rem;background:rgba(26,31,58,.8);border:1.5px solid var(--border);border-radius:var(--radius-lg);color:var(--text);font-size:1rem;flex:1;min-width:200px;transition:var(--transition)}
+.search-input:focus,.category-select:focus{outline:0;border-color:var(--primary);box-shadow:0 0 15px rgba(0,212,255,.2)}

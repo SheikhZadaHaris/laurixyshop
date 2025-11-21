@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - LAURIXY SHOP</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/39MjwjnR/LAURIXY-SHOP-FAVICON.png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Firebase SDK v8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo-section">
+                    <img src="https://i.ibb.co/pS2SGJV/LAURIXY-SHOP-WEB-LOGO.png" alt="LAURIXY SHOP" class="logo-img" onclick="window.location.href='index.html'" style="cursor:pointer; height: 50px;">
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="shop.html" class="nav-link">Shop</a>
+                    <a href="cart.html" class="nav-link active">Cart <span id="cartCount" class="cart-badge">0</span></a>
+                    
+                    <!-- Auth Menu (shown when NOT logged in) -->
+                    <div id="authMenu" class="nav-auth">
+                        <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                        <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+                    </div>
+                    
+                    <!-- User Menu (shown when logged in) -->
+                    <div id="userMenu" class="user-menu hidden">
+                        <div class="user-dropdown">
+                            <div class="user-name" id="userName">User</div>
+                            <a href="dashboard.html" class="dropdown-item">📊 Dashboard</a>
+                            <a href="javascript:logout()" class="dropdown-item">🚪 Logout</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Username Badge (shown when logged in) -->
+                    <div class="logo-username" id="logoUsername" style="display: none;">
+                        <span class="username-text" id="usernameText">User</span>
+                    </div>
+                </div>
+                <!-- Hamburger Menu -->
+                <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            
+            <div class="cart-content">
+                <div class="cart-items-container">
+                    <div id="cartItems" class="cart-items">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">Rs. 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Charge:</span>
+                        <span id="deliveryCharge">Rs. 200</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Coupon Discount:</span>
+                        <span id="discountAmount">Rs. 0</span>
+                    </div>
+                    <div class="coupon-section">
+                        <input type="text" id="couponCode" placeholder="Enter coupon code" class="coupon-input">
+                        <button onclick="applyCoupon()" class="btn-secondary">Apply</button>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="totalAmount">Rs. 0</span>
+                    </div>
+                    <button class="btn-primary btn-full" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                    <button class="btn-secondary btn-full" onclick="window.location.href='shop.html'">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>LAURIXY SHOP</h4>
+                    <p>Your ultimate destination for premium shopping</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@laurixy.com</p>
+                    <p>Phone: +92 300 1234567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LAURIXY SHOP. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+/* LAURIXY - Color & Variable Definitions */
+:root{
+--primary:#00d4ff;--primary-light:#00f0ff;--primary-dark:#0099cc;
+--secondary:#ff006e;--secondary-light:#ff3385;--secondary-dark:#cc0055;
+--accent:#8338ec;--accent-light:#a855f7;--accent-dark:#6b1fb8;
+--tertiary:#00ff88;--tertiary-light:#33ffaa;--tertiary-dark:#00cc66;
+--dark:#0a0e27;--darker:#050812;--card:#1a1f3a;--card-hover:#252d4a;
+--text:#fff;--text2:#b0b8d4;--text3:#8a92b2;
+--border:#2d3561;--border-light:#3d4571;
+--success:#00d084;--error:#ff006e;--warning:#ffb703;
+--shadow-sm:0 2px 8px rgba(0,212,255,.08);
+--shadow-md:0 8px 24px rgba(0,212,255,.12);
+--shadow-lg:0 16px 48px rgba(0,212,255,.16);
+--shadow-xl:0 24px 64px rgba(0,212,255,.2);
+--glow-sm:0 0 10px rgba(0,212,255,.2);
+--glow-md:0 0 20px rgba(0,212,255,.3);
+--glow-lg:0 0 40px rgba(0,212,255,.4);
+--glow-xl:0 0 60px rgba(0,212,255,.5);
+--transition:all .3s cubic-bezier(.4,.0,.2,1);
+--transition-fast:all .15s ease;
+--transition-slow:all .5s ease;
+--radius-sm:8px;--radius-md:12px;--radius-lg:15px;--radius-xl:20px;
+}

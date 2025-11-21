@@ -1,0 +1,11 @@
+/* LAURIXY - Notifications & Loading */
+.loading-spinner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2000}
+.loading-spinner.hidden{display:none}
+.spinner{border:4px solid var(--border);border-top:4px solid var(--primary);border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:20px;right:20px;padding:1rem 1.5rem;background:linear-gradient(135deg,rgba(26,31,58,.95) 0%,rgba(26,31,58,.85) 100%);border:1px solid var(--border);border-radius:var(--radius-lg);color:var(--text);z-index:1500;display:none;box-shadow:var(--shadow-lg);animation:slideIn .3s ease;font-weight:600}
+.toast.show{display:block}
+.toast.success{border-left:4px solid var(--success)}
+.toast.error{border-left:4px solid var(--error)}
+.toast.warning{border-left:4px solid var(--warning)}
+@keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}

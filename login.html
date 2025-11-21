@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LAURIXY SHOP</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/39MjwjnR/LAURIXY-SHOP-FAVICON.png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Firebase SDK v8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body class="auth-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo-section">
+                    <img src="https://i.ibb.co/pS2SGJV/LAURIXY-SHOP-WEB-LOGO.png" alt="LAURIXY SHOP" class="logo-img" onclick="window.location.href='index.html'" style="cursor:pointer; height: 50px;">
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <div class="nav-auth">
+                        <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Welcome Back</h1>
+                <p>Login to your LAURIXY account</p>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn-primary btn-full">Login</button>
+            </form>
+
+            <div class="auth-divider">OR</div>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html" class="auth-link">Sign Up</a></p>
+            </div>
+
+            <!-- Forgot Password Section -->
+            <div class="forgot-password-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center;">
+                <h3 style="color: var(--primary); font-size: 1rem; margin-bottom: 1rem;">Forgot Your Password?</h3>
+                <p style="color: var(--text2); margin-bottom: 1rem;">Please contact us for password recovery:</p>
+                <p style="color: var(--text); font-weight: 600; margin: 0.5rem 0;">
+                    📧 <a href="mailto:laurixyofficial@gmail.com" style="color: var(--primary); text-decoration: none;">laurixyofficial@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="auth-glow"></div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* LAURIXY - Base Styles */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell',sans-serif;background:linear-gradient(135deg,var(--darker) 0%,var(--dark) 100%);color:var(--text);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%,rgba(0,212,255,.03) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(255,0,110,.03) 0%,transparent 50%);pointer-events:none;z-index:0}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+h1,h2,h3,h4,h5,h6{font-weight:900;letter-spacing:-.5px}
+a{transition:var(--transition)}
+button{transition:var(--transition);cursor:pointer}
+input,textarea,select{font-family:inherit;transition:var(--transition)}

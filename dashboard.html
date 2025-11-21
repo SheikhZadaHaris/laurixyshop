@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LAURIXY SHOP</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/39MjwjnR/LAURIXY-SHOP-FAVICON.png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Firebase SDK v8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo-section">
+                    <img src="https://i.ibb.co/pS2SGJV/LAURIXY-SHOP-WEB-LOGO.png" alt="LAURIXY SHOP" class="logo-img" onclick="window.location.href='index.html'" style="cursor:pointer; height: 50px;">
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="shop.html" class="nav-link">Shop</a>
+                    <a href="cart.html" class="nav-link">Cart</a>
+                    
+                    <!-- User Menu (shown when logged in) -->
+                    <div id="userMenu" class="user-menu">
+                        <div class="user-dropdown">
+                            <div class="user-name" id="userName">User</div>
+                            <a href="dashboard.html" class="dropdown-item">📊 Dashboard</a>
+                            <a href="javascript:logout()" class="dropdown-item">🚪 Logout</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Username Badge (shown when logged in) -->
+                    <div class="logo-username" id="logoUsername" style="display: none;">
+                        <span class="username-text" id="usernameText">User</span>
+                    </div>
+                </div>
+                <!-- Hamburger Menu -->
+                <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>My Dashboard</h1>
+                <p id="userGreeting">Welcome back!</p>
+            </div>
+
+            <div class="dashboard-tabs">
+                <button class="tab-button active" onclick="switchTab('orders')">My Orders</button>
+                <button class="tab-button" onclick="switchTab('profile')">Profile</button>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersTab" class="tab-content active">
+                <div class="orders-container">
+                    <h2>Your Orders</h2>
+                    <div id="ordersList" class="orders-list">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="tab-content hidden">
+                <div class="profile-container">
+                    <h2>Profile Information</h2>
+                    <div class="profile-info">
+                        <div class="info-row">
+                            <label>Username:</label>
+                            <span id="profileUsername"></span>
+                        </div>
+                        <div class="info-row">
+                            <label>Email:</label>
+                            <span id="profileEmail"></span>
+                        </div>
+                        <div class="info-row">
+                            <label>Member Since:</label>
+                            <span id="profileMemberSince"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <button class="modal-close" onclick="closeOrderModal()">&times;</button>
+            <div class="modal-body">
+                <h2>Order Details</h2>
+                <div id="orderDetailsContent" class="order-details-content">
+                    <!-- Order details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>LAURIXY SHOP</h4>
+                    <p>Your ultimate destination for premium shopping</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@laurixy.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LAURIXY SHOP. All rights reserved.</p>
+                <p style="margin-top: 1rem;">
+                    <a href="https://www.instagram.com/officiallaurixy/" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">📷 Follow us on Instagram</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

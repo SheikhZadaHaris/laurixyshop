@@ -1,0 +1,33 @@
+/* LAURIXY - Navbar */
+.navbar{background:linear-gradient(135deg,rgba(5,8,18,.98) 0%,rgba(26,31,58,.98) 100%);border-bottom:2px solid var(--primary);padding:1rem 0;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(0,212,255,.1)}
+.navbar-content{display:flex;justify-content:space-between;align-items:center;width:100%}
+.logo-section{display:flex;align-items:center;gap:.5rem}
+.logo{display:flex;align-items:center;gap:.5rem;font-size:1.5rem;font-weight:900;cursor:pointer;transition:var(--transition)}
+.logo:hover{transform:scale(1.08);filter:drop-shadow(0 0 20px rgba(0,212,255,.5))}
+.logo-username{display:flex;align-items:center;padding:.75rem 1.5rem;background:linear-gradient(135deg,rgba(0,212,255,.15) 0%,rgba(131,56,236,.15) 100%);border:2px solid var(--primary);border-radius:25px;transition:var(--transition);cursor:pointer;box-shadow:0 0 10px rgba(0,212,255,.2)}
+.logo-username:hover{background:linear-gradient(135deg,rgba(0,212,255,.25) 0%,rgba(131,56,236,.25) 100%);box-shadow:var(--glow-lg);transform:translateY(-3px)}
+.username-text{color:var(--primary);font-weight:900;font-size:.95rem;text-transform:capitalize;letter-spacing:.5px;text-shadow:0 0 10px rgba(0,212,255,.3)}
+.logo-text{background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 50%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(0,212,255,.4));font-size:1.8rem;letter-spacing:1px}
+.logo-badge{background:linear-gradient(135deg,var(--secondary) 0%,var(--accent) 100%);color:var(--text);padding:.4rem 1rem;border-radius:25px;font-size:.8rem;font-weight:900;box-shadow:var(--glow-md);letter-spacing:1.5px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-link{color:var(--text2);text-decoration:none;transition:var(--transition);position:relative;display:flex;align-items:center;gap:.5rem;font-weight:600;padding:.5rem 0}
+.nav-link:hover,.nav-link.active{color:var(--primary);text-shadow:0 0 10px rgba(0,212,255,.5)}
+.nav-link::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width .3s ease}
+.nav-link:hover::after,.nav-link.active::after{width:100%}
+.cart-badge{background:linear-gradient(135deg,var(--secondary),var(--accent));color:var(--text);padding:.35rem .6rem;border-radius:50%;font-size:.75rem;font-weight:900;box-shadow:var(--glow-sm);min-width:24px;text-align:center;animation:pulse 2s ease-in-out infinite}
+.nav-auth{display:flex;gap:1rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.5rem;position:relative;z-index:101}
+.hamburger span{width:28px;height:3px;background:var(--primary);border-radius:2px;transition:var(--transition);box-shadow:0 0 8px rgba(0,212,255,.3)}
+.hamburger:hover span{box-shadow:0 0 15px rgba(0,212,255,.6)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(10px,10px);box-shadow:0 0 15px rgba(0,212,255,.6)}
+.hamburger.active span:nth-child(2){opacity:0;transform:translateX(-10px)}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(8px,-8px);box-shadow:0 0 15px rgba(0,212,255,.6)}
+.user-menu{display:flex;align-items:center;gap:1rem;position:relative}
+.user-menu.hidden{display:none}
+.user-dropdown{display:none;position:fixed;top:auto;right:auto;background:linear-gradient(135deg,rgba(26,31,58,.98) 0%,rgba(5,8,18,.98) 100%);border:2px solid var(--primary);border-radius:12px;padding:1rem;min-width:220px;box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(0,212,255,.1);z-index:1000;backdrop-filter:blur(10px);animation:slideDown .3s ease}
+.user-dropdown:hover{display:block}
+.user-menu:hover .user-dropdown{display:block}
+.logo-username:hover~.user-menu .user-dropdown,.logo-username:hover .user-dropdown{display:block}
+.user-name{color:var(--primary);font-weight:900;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:2px solid var(--primary);text-transform:capitalize}
+.dropdown-item{display:block;color:var(--text2);text-decoration:none;padding:.6rem .75rem;border-radius:8px;transition:var(--transition);margin:.25rem 0}
+.dropdown-item:hover{background:rgba(0,212,255,.1);color:var(--primary);padding-left:1rem;transform:translateX(5px)}

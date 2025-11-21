@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - LAURIXY SHOP</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/39MjwjnR/LAURIXY-SHOP-FAVICON.png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Firebase SDK v8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body class="admin-body">
+    <!-- Admin Navigation -->
+    <nav class="admin-navbar">
+        <div class="admin-navbar-content">
+            <img src="https://i.ibb.co/pS2SGJV/LAURIXY-SHOP-WEB-LOGO.png" alt="LAURIXY SHOP" class="logo-img" onclick="window.location.href='index.html'" style="cursor:pointer; height: 50px;">
+            <div class="admin-nav-right">
+                <button class="hamburger" id="adminHamburger" onclick="toggleAdminSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-menu">
+                <button class="menu-item active" onclick="switchAdminTab('dashboard')">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="menu-item" onclick="switchAdminTab('orders')">
+                    <span class="menu-icon">📦</span>
+                    <span>Orders</span>
+                </button>
+                <button class="menu-item" onclick="switchAdminTab('products')">
+                    <span class="menu-icon">🛍️</span>
+                    <span>Products</span>
+                </button>
+                <button class="menu-item" onclick="switchAdminTab('users')">
+                    <span class="menu-icon">👥</span>
+                    <span>Users</span>
+                </button>
+                <button class="menu-item" onclick="switchAdminTab('coupons')">
+                    <span class="menu-icon">🎟️</span>
+                    <span>Coupons</span>
+                </button>
+                <button class="menu-item" onclick="switchAdminTab('payments')">
+                    <span class="menu-icon">💳</span>
+                    <span>Payment Methods</span>
+                </button>
+                <button class="menu-item menu-logout" onclick="adminLogout()">
+                    <span class="menu-icon">🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Tab -->
+            <div id="dashboardTab" class="admin-tab active">
+                <h1>Dashboard</h1>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <h3>Total Orders</h3>
+                            <p id="totalOrders">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3>Total Users</h3>
+                            <p id="totalUsers">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <h3>Total Revenue</h3>
+                            <p id="totalRevenue">Rs. 0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🛍️</div>
+                        <div class="stat-info">
+                            <h3>Total Products</h3>
+                            <p id="totalProducts">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-controls reset-controls">
+                    <button class="btn-reset-orders" onclick="resetAllOrders()">🗑️ Reset All Data</button>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersTab" class="admin-tab hidden">
+                <h1>Orders Management</h1>
+                <div class="admin-controls">
+                    <input type="text" id="orderSearch" placeholder="Search orders..." class="search-input">
+                    <select id="orderStatusFilter" class="filter-select">
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                </div>
+                <div id="ordersList" class="admin-table-container">
+                    <!-- Orders table will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Products Tab -->
+            <div id="productsTab" class="admin-tab hidden">
+                <h1>Products Management</h1>
+                <button class="btn-primary" onclick="openAddProductModal()">+ Add Product</button>
+                <div id="productsList" class="admin-table-container">
+                    <!-- Products table will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="usersTab" class="admin-tab hidden">
+                <h1>Users Management</h1>
+                <div class="admin-controls">
+                    <input type="text" id="userSearch" placeholder="Search users..." class="search-input">
+                    <button class="btn-delete" onclick="deleteAllUsers()" style="background-color: #dc3545;">Delete All Users</button>
+                </div>
+                <div id="usersList" class="admin-table-container">
+                    <!-- Users table will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Coupons Tab -->
+            <div id="couponsTab" class="admin-tab hidden">
+                <h1>Coupons Management</h1>
+                <button class="btn-primary" onclick="openAddCouponModal()">+ Add Coupon</button>
+                <div id="couponsList" class="admin-table-container">
+                    <!-- Coupons table will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Payments Tab -->
+            <div id="paymentsTab" class="admin-tab hidden">
+                <h1>Payment Methods</h1>
+                <div class="payment-methods-grid">
+                    <div class="payment-method-card">
+                        <h3>Bank Transfer</h3>
+                        <div class="form-group">
+                            <label>IBAN</label>
+                            <input type="text" id="bankIban" placeholder="Enter IBAN">
+                        </div>
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input type="text" id="bankAccount" placeholder="Enter account number">
+                        </div>
+                        <button class="btn-primary" onclick="updatePaymentMethod('bank')">Update</button>
+                    </div>
+                    <div class="payment-method-card">
+                        <h3>JazzCash</h3>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="jazzcashNumber" placeholder="Enter JazzCash number">
+                        </div>
+                        <button class="btn-primary" onclick="updatePaymentMethod('jazzcash')">Update</button>
+                    </div>
+                    <div class="payment-method-card">
+                        <h3>Easypaisa</h3>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="easypaisaNumber" placeholder="Enter Easypaisa number">
+                        </div>
+                        <button class="btn-primary" onclick="updatePaymentMethod('easypaisa')">Update</button>
+                    </div>
+                    <div class="payment-method-card">
+                        <h3>Raast</h3>
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input type="text" id="raastAccount" placeholder="Enter Raast account">
+                        </div>
+                        <button class="btn-primary" onclick="updatePaymentMethod('raast')">Update</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <button class="modal-close" onclick="closeAddProductModal()">&times;</button>
+            <div class="modal-body">
+                <h2>Add Product</h2>
+                <form id="addProductForm" class="admin-form">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="productDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" id="productCategory" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (Rs.)</label>
+                        <input type="number" id="productPrice" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" id="productStock" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URLs (comma-separated)</label>
+                        <textarea id="productImages" rows="3" placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Coupon Modal -->
+    <div id="addCouponModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAddCouponModal()">&times;</button>
+            <div class="modal-body">
+                <h2>Add Coupon</h2>
+                <form id="addCouponForm" class="admin-form">
+                    <div class="form-group">
+                        <label>Coupon Code</label>
+                        <input type="text" id="couponCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Discount (%)</label>
+                        <input type="number" id="couponDiscount" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Usage Limit Per User</label>
+                        <input type="number" id="couponUsageLimit" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Expiry Date (optional)</label>
+                        <input type="date" id="couponExpiry">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="couponActive" checked>
+                            Active
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Coupon</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <button class="modal-close" onclick="closeOrderDetailsModal()">&times;</button>
+            <div class="modal-body">
+                <h2>Order Details</h2>
+                <div id="orderDetailsContent" class="order-details-content">
+                    <!-- Order details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
