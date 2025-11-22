@@ -209,6 +209,13 @@ function updateNavbarUI(user) {
             userMenu.style.display = 'flex';
             userMenu.classList.remove('hidden');
         }
+        
+        // Show mobile logout button
+        const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+        if (mobileLogoutBtn) {
+            mobileLogoutBtn.classList.remove('hidden');
+            mobileLogoutBtn.style.display = 'block';
+        }
     } else {
         // User is NOT logged in
         if (authMenu) {
@@ -221,6 +228,13 @@ function updateNavbarUI(user) {
         }
         if (logoUsername) {
             logoUsername.style.display = 'none';
+        }
+        
+        // Hide mobile logout button
+        const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+        if (mobileLogoutBtn) {
+            mobileLogoutBtn.classList.add('hidden');
+            mobileLogoutBtn.style.display = 'none';
         }
     }
 }
