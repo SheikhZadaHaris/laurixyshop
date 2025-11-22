@@ -7,6 +7,10 @@
 .btn-reset-orders:active{transform:translateY(0)}
 .menu-item.menu-logout{background:linear-gradient(135deg,rgba(255,0,110,.15) 0%,rgba(255,0,110,.05) 100%);border-left:4px solid var(--secondary);color:var(--secondary);font-weight:700;transition:all .3s ease}
 .menu-item.menu-logout:hover{background:linear-gradient(135deg,rgba(255,0,110,.25) 0%,rgba(255,0,110,.15) 100%);border-left-color:var(--secondary);box-shadow:inset 0 0 15px rgba(255,0,110,.2);transform:translateX(5px)}
+.btn-logout-mobile{background:linear-gradient(135deg,var(--error) 0%,#ff1744 100%);color:var(--text);padding:.75rem 1.5rem;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s ease;box-shadow:0 4px 15px rgba(255,0,110,.3);display:none;width:100%;margin-top:1rem}
+.btn-logout-mobile:hover{background:linear-gradient(135deg,#ff1744 0%,#d50000 100%);box-shadow:0 6px 20px rgba(255,0,110,.5);transform:translateY(-2px)}
+.btn-logout-mobile:active{transform:translateY(0)}
+.btn-logout-mobile.hidden{display:none !important}
 
 /* LARGE SCREENS - Desktop (1200px+) */
 @media(min-width:1200px){
