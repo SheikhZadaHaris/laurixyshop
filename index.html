@@ -47,9 +47,11 @@
                         <div class="user-dropdown">
                             <div class="user-name" id="userName">User</div>
                             <a href="dashboard.html" class="dropdown-item">📊 Dashboard</a>
-                            <a href="javascript:logout()" class="dropdown-item">🚪 Logout</a>
                         </div>
                     </div>
+                    
+                    <!-- Mobile Logout Button (shown when logged in on mobile) -->
+                    <button id="mobileLogoutBtn" class="btn-logout-mobile hidden" onclick="logout()">🚪 Logout</button>
                     
                     <!-- Username Badge (shown when logged in) -->
                     <div class="logo-username" id="logoUsername" style="display: none;">
